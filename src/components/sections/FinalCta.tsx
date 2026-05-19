@@ -1,84 +1,101 @@
 import { motion } from "motion/react";
 import { Button } from "../ui/Button";
-import { Sparkles } from "lucide-react";
+import { GraduationCap, Sparkles } from "lucide-react";
 
 export const FinalCta = () => {
   return (
-    <section className="relative w-full py-32 px-6 overflow-hidden">
-      {/* Background Cinematic Lighting for CTA */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="absolute w-[800px] h-[400px] bg-brand-primary opacity-30 blur-[120px] rounded-full mix-blend-screen" />
-        <div className="absolute w-[400px] h-[300px] bg-brand-neon opacity-20 blur-[100px] rounded-full mix-blend-screen" />
+    <section className="relative w-full py-32 px-6 overflow-hidden bg-slate-900">
+      {/* Background Image Imponente */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop" 
+          alt="Estudantes vibrando com a aprovação" 
+          className="w-full h-full object-cover object-center opacity-40 mix-blend-luminosity"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-transparent" />
+        <div className="absolute inset-0 bg-blue-900/30 mix-blend-overlay" />
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
+      <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center">
+        
+        {/* Card Interativo Flutuante */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 50, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="glass-card rounded-[3rem] p-12 md:p-24 border border-white/10 relative overflow-hidden"
+          transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+          className="w-full bg-white/10 backdrop-blur-xl border border-white/20 rounded-[3rem] p-10 md:p-16 lg:p-20 text-center shadow-2xl shadow-blue-900/50 hover:border-blue-400/50 transition-colors duration-500 group relative overflow-hidden"
         >
-          {/* subtle particles inside card */}
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTYwIDB2NjBIMFYweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik02MCAwaC0xHYzYwaDFWTTB6TTAgNjB2LTFoNjBWNjB6IiBmaWxsPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIi8+PC9zdmc+')] opacity-20" />
-
-          {/* ELO Watermark */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display font-black text-[12rem] md:text-[20rem] leading-none text-slate-100/[0.02] tracking-tighter select-none pointer-events-none z-0">
-            ELO
-          </div>
-
+          {/* Efeito Hover Glow no Card */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-amber-400 to-blue-600 rounded-[3rem] opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-700 pointer-events-none" />
+          
           <div className="relative z-10">
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="w-16 h-16 mx-auto bg-brand-primary/20 border border-brand-neon/50 rounded-2xl flex items-center justify-center mb-8 box-glow"
+              transition={{ delay: 0.1 }}
+              className="w-20 h-20 mx-auto bg-gradient-to-br from-blue-500 to-blue-700 border border-blue-400 rounded-3xl flex items-center justify-center mb-8 shadow-lg shadow-blue-500/30 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500"
             >
-              <Sparkles className="w-8 h-8 text-brand-neon" />
+              <GraduationCap className="w-10 h-10 text-white" />
             </motion.div>
 
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="font-display text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
+              transition={{ delay: 0.2 }}
+              className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
+              style={{ fontFamily: "Merriweather, Georgia, serif" }}
             >
-              O próximo aprovado <br/> pode ser <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-neon to-white text-glow">você.</span>
+              O próximo aprovado<br />
+              pode ser{" "}
+              <span
+                className="bg-clip-text text-transparent relative inline-block"
+                style={{ backgroundImage: "linear-gradient(90deg, #fcd34d 0%, #f59e0b 100%)" }}
+              >
+                você.
+                <Sparkles className="absolute -top-6 -right-8 w-8 h-8 text-amber-400 animate-pulse" />
+              </span>
             </motion.h2>
 
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto"
+              transition={{ delay: 0.3 }}
+              className="text-lg md:text-xl text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed font-light"
+              style={{ fontFamily: "Lato, sans-serif" }}
             >
-              As vagas são limitadas. Garanta seu lugar no projeto que vai transformar a sua trajetória e te colocar dentro da universidade.
+              As vagas para o curso presencial de 2026 são limitadas. Garanta seu lugar no projeto que vai transformar a sua trajetória com 100% de gratuidade.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.4 }}
             >
-              <Button size="lg" className="w-full sm:w-auto text-lg shadow-[0_0_40px_rgba(56,189,248,0.5)]">
-                Quero Fazer Parte
-              </Button>
+              <button
+                className="w-full sm:w-auto px-12 py-5 bg-amber-500 hover:bg-amber-400 text-slate-900 font-black text-xl rounded-full shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] transform hover:-translate-y-1 transition-all duration-300"
+                style={{ fontFamily: "Lato, sans-serif" }}
+              >
+                Fazer Minha Inscrição Agora
+              </button>
             </motion.div>
           </div>
         </motion.div>
       </div>
 
-      {/* Footer minimal */}
-      <footer className="relative z-10 w-full mt-24 text-center pb-8 border-t border-white/5 pt-8">
-        <p className="text-slate-500 text-sm">© {new Date().getFullYear()} Pré Enem Elo. Todos os direitos reservados.</p>
-        <div className="flex items-center justify-center gap-4 mt-4 text-sm text-slate-400">
-          <a href="#" className="hover:text-white transition-colors">Instagram</a>
-          <a href="#" className="hover:text-white transition-colors">Contato</a>
-          <a href="#" className="hover:text-white transition-colors">Termos de Uso</a>
+      {/* Footer minimalista e elegante */}
+      <footer className="relative z-10 w-full mt-32 text-center pb-8 border-t border-white/10 pt-10">
+        <p className="text-white/40 text-sm font-semibold tracking-wide" style={{ fontFamily: "Lato, sans-serif" }}>
+          © {new Date().getFullYear()} Pré Enem Elo. Moldando futuros.
+        </p>
+        <div className="flex items-center justify-center gap-8 mt-4 text-xs font-bold uppercase tracking-widest text-white/30" style={{ fontFamily: "Lato, sans-serif" }}>
+          <a href="#" className="hover:text-amber-400 transition-colors">Instagram</a>
+          <a href="#" className="hover:text-amber-400 transition-colors">WhatsApp</a>
+          <a href="#" className="hover:text-amber-400 transition-colors">Localização</a>
         </div>
       </footer>
     </section>

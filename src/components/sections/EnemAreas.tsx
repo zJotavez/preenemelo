@@ -1,73 +1,131 @@
 import { motion } from "motion/react";
+import { Calculator, Book, Globe2, FlaskConical, PenTool } from "lucide-react";
 
 export const EnemAreas = () => {
   const areas = [
-    { name: "Matemática", color: "from-blue-500 to-cyan-400", abbr: "MAT" },
-    { name: "Linguagens", color: "from-pink-500 to-rose-400", abbr: "LIN" },
-    { name: "Ciências Humanas", color: "from-amber-500 to-orange-400", abbr: "HUM" },
-    { name: "Ciências da Natureza", color: "from-green-500 to-emerald-400", abbr: "NAT" },
-    { name: "Redação", color: "from-purple-500 to-indigo-400", abbr: "RED" },
+    { 
+      name: "Matemática", 
+      accent: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)", 
+      abbr: "MAT", 
+      desc: "Lógica, álgebra e geometria",
+      icon: Calculator
+    },
+    { 
+      name: "Linguagens", 
+      accent: "linear-gradient(135deg, #a855f7 0%, #7e22ce 100%)", 
+      abbr: "LIN", 
+      desc: "Interpretação e literatura",
+      icon: Book
+    },
+    { 
+      name: "Ciências Humanas", 
+      accent: "linear-gradient(135deg, #f59e0b 0%, #b45309 100%)", 
+      abbr: "HUM", 
+      desc: "História, geografia e filosofia",
+      icon: Globe2
+    },
+    { 
+      name: "Ciências da Natureza", 
+      accent: "linear-gradient(135deg, #10b981 0%, #047857 100%)", 
+      abbr: "NAT", 
+      desc: "Biologia, física e química",
+      icon: FlaskConical
+    },
+    { 
+      name: "Redação", 
+      accent: "linear-gradient(135deg, #f43f5e 0%, #be123c 100%)", 
+      abbr: "RED", 
+      desc: "Domínio e argumentação textual",
+      icon: PenTool
+    },
   ];
 
   return (
-    <section className="relative w-full py-24 px-6 overflow-hidden">
+    <section className="relative w-full py-24 px-6 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glass-card rounded-[3rem] p-10 md:p-16 border border-white/5 relative"
+          className="rounded-[2.5rem] overflow-hidden relative border border-blue-50 shadow-lg p-10 md:p-16"
+          style={{ background: "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)" }}
         >
-          {/* Subtle bg glow */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[1px] bg-gradient-to-r from-transparent via-brand-neon to-transparent opacity-50" />
-          
+          {/* Luzes decorativas */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
+
           <div className="flex flex-col lg:flex-row gap-12 items-center">
             
-            <div className="lg:w-1/3">
-              <h2 className="font-display text-4xl font-bold mb-4">
-                Domine as áreas do <span className="text-brand-neon">ENEM</span>
+            <div className="lg:w-1/3 text-center lg:text-left z-10">
+              <div className="inline-flex items-center gap-2 mb-5 px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm mx-auto lg:mx-0">
+                <span
+                  className="text-xs font-bold text-gray-800 uppercase tracking-widest"
+                  style={{ fontFamily: "Lato, sans-serif" }}
+                >
+                  Áreas do ENEM
+                </span>
+              </div>
+              <h2
+                className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight"
+                style={{ fontFamily: "Merriweather, Georgia, serif" }}
+              >
+                Domine as áreas do{" "}
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{ backgroundImage: "linear-gradient(90deg, #1a56c4 0%, #f59e0b 100%)" }}
+                >
+                  ENEM
+                </span>
               </h2>
-              <p className="text-slate-400 text-lg">
-                Método focado na matriz de referência do exame para maximizar seus acertos e contornar os distratores.
+              <p
+                className="text-gray-600 text-lg leading-relaxed"
+                style={{ fontFamily: "Lato, sans-serif", fontWeight: 300 }}
+              >
+                Nossa metodologia é estruturada exatamente sobre a matriz de referência do exame, garantindo preparo emocional e técnico para você atingir a nota máxima.
               </p>
             </div>
 
-            <div className="lg:w-2/3 w-full grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="lg:w-2/3 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 z-10">
               {areas.map((area, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="group relative h-40 glass rounded-2xl flex flex-col justify-between p-6 overflow-hidden hover:border-brand-primary/50 transition-colors"
+                  className={`group relative h-48 bg-white rounded-3xl flex flex-col justify-between p-6 overflow-hidden hover:-translate-y-2 shadow-sm hover:shadow-xl transition-all duration-400 border border-gray-100 ${idx === 4 ? 'sm:col-span-2 md:col-span-1' : ''}`}
                 >
-                  <div className={`absolute -right-6 -top-6 w-24 h-24 bg-gradient-to-br ${area.color} opacity-20 blur-2xl group-hover:opacity-40 transition-opacity`} />
+                  {/* Fundo animado que cresce no hover */}
+                  <div
+                    className="absolute bottom-0 right-0 w-32 h-32 rounded-tl-full opacity-[0.03] group-hover:opacity-[0.08] group-hover:scale-150 transition-all duration-500 origin-bottom-right"
+                    style={{ background: area.accent }}
+                  />
                   
-                  {/* ELO Watermark */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display font-black text-6xl leading-none text-slate-100/[0.02] group-hover:text-slate-100/[0.04] transition-colors tracking-tighter select-none pointer-events-none z-0">
-                    ELO
+                  <div className="flex justify-between items-start">
+                    <div
+                      className="text-sm font-black tracking-widest"
+                      style={{ fontFamily: "Lato, sans-serif", color: area.accent.includes('3b82f6') ? '#1d4ed8' : area.accent.includes('a855f7') ? '#7e22ce' : area.accent.includes('f59e0b') ? '#b45309' : area.accent.includes('10b981') ? '#047857' : '#be123c' }}
+                    >
+                      {area.abbr}
+                    </div>
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white shadow-md transform group-hover:rotate-12 transition-transform duration-300" style={{ background: area.accent }}>
+                      <area.icon className="w-5 h-5" />
+                    </div>
                   </div>
-                  
-                  <div className="text-sm font-bold flex-1 text-slate-500 font-mono tracking-wider relative z-10">
-                    {area.abbr}
+
+                  <div className="relative z-10">
+                    <h3
+                      className="font-bold text-lg text-gray-800 mb-1"
+                      style={{ fontFamily: "Merriweather, Georgia, serif" }}
+                    >
+                      {area.name}
+                    </h3>
+                    <p className="text-sm text-gray-500 leading-relaxed" style={{ fontFamily: "Lato, sans-serif" }}>
+                      {area.desc}
+                    </p>
                   </div>
-                  <h3 className="font-semibold text-lg text-white font-display group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-slate-400 relative z-10">
-                    {area.name}
-                  </h3>
                 </motion.div>
               ))}
-              
-              {/* Extra dummy card for grid balance if needed, or just let it flow. 5 items in 3 cols leaves 1 empty slot */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }}
-                className="col-span-2 md:col-span-1 h-40 rounded-2xl border border-dashed border-slate-700 flex items-center justify-center p-6 text-center"
-              >
-                <span className="text-sm text-slate-500 font-medium">+ Estratégia de Prova</span>
-              </motion.div>
             </div>
 
           </div>

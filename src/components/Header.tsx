@@ -7,32 +7,41 @@ export const Header = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="absolute top-0 left-0 w-full z-50 px-6 py-6"
+      className="absolute top-0 left-0 w-full z-50 px-6 py-5"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-neon to-brand-primary flex items-center justify-center shadow-[0_0_20px_rgba(56,189,248,0.4)]">
-            <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <div className="w-9 h-9 rounded-lg bg-white/20 border border-white/30 flex items-center justify-center backdrop-blur-sm">
+            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 2L2 7l10 5 10-5-10-5z" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M2 17l10 5 10-5" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M2 12l10 5 10-5" />
             </svg>
           </div>
-          <span className="font-display font-bold text-xl text-white tracking-wide">Pré Enem Elo</span>
+          <span
+            className="font-heading font-bold text-lg text-white tracking-wide"
+            style={{ fontFamily: "Lato, sans-serif", letterSpacing: "0.05em" }}
+          >
+            Pré Enem Elo
+          </span>
         </div>
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#" className="text-sm font-medium text-white hover:text-brand-neon transition-colors">O Projeto</a>
-          <a href="#" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">Metodologia</a>
-          <a href="#" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">Professores</a>
-          <a href="#" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">Impacto Social</a>
+          <a href="#" className="text-sm font-medium text-white/90 hover:text-white transition-colors tracking-wide">O Projeto</a>
+          <a href="#" className="text-sm font-medium text-white/70 hover:text-white transition-colors tracking-wide">Metodologia</a>
+          <a href="#" className="text-sm font-medium text-white/70 hover:text-white transition-colors tracking-wide">Professores</a>
+          <a href="#" className="text-sm font-medium text-white/70 hover:text-white transition-colors tracking-wide">Impacto Social</a>
         </nav>
 
         {/* CTA */}
-        <Button variant="outline" size="sm" className="hidden sm:inline-flex rounded-xl font-semibold border-white/10 text-white hover:bg-white/5">
+        <Button
+          variant="outline"
+          size="sm"
+          className="hidden sm:inline-flex rounded-lg font-semibold border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
+        >
           Área do Aluno
         </Button>
       </div>
