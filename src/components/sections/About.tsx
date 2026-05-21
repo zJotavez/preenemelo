@@ -65,31 +65,49 @@ export const About = () => {
               O Pré Enem Elo nasceu com a missão de democratizar o acesso à educação presencial de altíssimo nível. Nossa metodologia une apoio humano, estratégia pedagógica e acompanhamento individual para que cada aluno atinja seu potencial.
             </p>
 
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-6">
               {[
-                { icon: Target, title: "Foco no Resultado", desc: "Preparação estratégica com simulados e metas claras." },
-                { icon: Users, title: "Apoio Presencial", desc: "Mentoria de perto e acompanhamento psicológico." },
-                { icon: BookOpen, title: "Impacto Social", desc: "Transformando trajetórias através do conhecimento." }
+                { 
+                  icon: Target, 
+                  title: "Foco no Resultado", 
+                  desc: "Preparação focada e estratégica baseada nas estatísticas reais do ENEM, com simulados recorrentes e metas de notas calculadas para sua vaga." 
+                },
+                { 
+                  icon: Users, 
+                  title: "Apoio Presencial", 
+                  desc: "Presença real e diária de professores qualificados, mentoria acadêmica lado a lado e acompanhamento pedagógico e emocional humano." 
+                },
+                { 
+                  icon: BookOpen, 
+                  title: "Impacto Profissional", 
+                  desc: "Desenvolvimento de competências intelectuais e de escrita crítica que destravam o seu futuro universitário e profissional." 
+                }
               ].map((item, idx) => (
                 <motion.div 
                   key={idx} 
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1, duration: 0.5 }}
-                  className="flex items-start gap-5 group cursor-pointer"
+                  transition={{ delay: idx * 0.1, duration: 0.6, type: "spring", stiffness: 100 }}
+                  whileHover={{ 
+                    y: -6, 
+                    x: 4,
+                    scale: 1.02,
+                    boxShadow: "0 15px 30px -10px rgba(26, 86, 196, 0.12)"
+                  }}
+                  className="flex items-start gap-5 p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:bg-white hover:border-blue-200 transition-all duration-300 group cursor-pointer"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-white shadow-sm border border-gray-100 flex items-center justify-center text-blue-600 transition-all duration-300 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white group-hover:-rotate-3 group-hover:shadow-md">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-white shadow-sm border border-slate-100 flex items-center justify-center text-blue-600 transition-all duration-300 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white group-hover:-rotate-3 group-hover:shadow-md">
                     <item.icon className="w-5 h-5 transition-transform group-hover:scale-110" />
                   </div>
                   <div>
                     <h3
-                      className="font-bold text-lg text-gray-800 mb-1 transition-colors duration-300 group-hover:text-blue-700"
+                      className="font-bold text-lg text-slate-850 mb-1.5 transition-colors duration-300 group-hover:text-blue-750"
                       style={{ fontFamily: "Lato, sans-serif" }}
                     >
                       {item.title}
                     </h3>
-                    <p className="text-gray-500 text-base leading-relaxed group-hover:text-gray-600 transition-colors duration-300" style={{ fontFamily: "Lato, sans-serif" }}>
+                    <p className="text-slate-500 text-sm sm:text-base leading-relaxed group-hover:text-slate-650 transition-colors duration-300" style={{ fontFamily: "Lato, sans-serif" }}>
                       {item.desc}
                     </p>
                   </div>
@@ -101,14 +119,14 @@ export const About = () => {
           {/* Right — Imagem + Vídeo com Efeito Paralaxe Oposto */}
           <div className="flex flex-col gap-8 relative">
             
-            {/* Foto Orgânica */}
+            {/* Foto Orgânica Real da Escola/Universidade */}
             <motion.div 
               style={{ y: yImage }}
               className="relative h-[400px] w-full rounded-[2.5rem] rounded-tr-[5rem] rounded-bl-[5rem] overflow-hidden shadow-2xl border-4 border-white z-10 cursor-pointer group"
             >
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2070&auto=format&fit=crop')" }}
+                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2070&auto=format&fit=crop')" }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-blue-950/70 via-blue-950/10 to-transparent pointer-events-none group-hover:opacity-90 transition-opacity" />
               
@@ -119,13 +137,13 @@ export const About = () => {
                     className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1"
                     style={{ fontFamily: "Lato, sans-serif" }}
                   >
-                    Metodologia Presencial
+                    Estudo Presencial e Humano
                   </p>
                   <p
                     className="text-gray-900 font-bold"
                     style={{ fontFamily: "Merriweather, Georgia, serif" }}
                   >
-                    Ecossistema de Aprovação
+                    Ecossistema Prático de Aprovação
                   </p>
                 </div>
                 <div className="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center shadow-md transition-transform duration-300 group-hover:scale-110">

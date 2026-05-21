@@ -1,55 +1,64 @@
+import { useCallback } from "react";
 import { motion } from "motion/react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { PlayCircle, FileText, PenTool, LayoutDashboard, BrainCircuit, HeartHandshake } from "lucide-react";
+import { PlayCircle, FileText, PenTool, LayoutDashboard, BrainCircuit, HeartHandshake, ChevronLeft, ChevronRight } from "lucide-react";
 
 export const Benefits = () => {
   // Configuração do carrossel: loop infinito, arraste ativado e autoplay
-  const [emblaRef] = useEmblaCarousel({ loop: true, align: "start", dragFree: true }, [
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start", dragFree: true }, [
     Autoplay({ delay: 3500, stopOnInteraction: true, stopOnMouseEnter: true })
   ]);
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
 
   const benefits = [
     {
       icon: PlayCircle,
-      title: "Aulas Completas e Presenciais",
-      desc: "Conteúdo focado no que realmente cai no ENEM, com interação olho no olho e didática de excelência.",
-      image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop"
+      title: "Aulas Presenciais e Imersivas",
+      desc: "Conteúdo presencial dinâmico, focado no ENEM, com interação direta dos professores em sala.",
+      image: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=800&auto=format&fit=crop"
     },
     {
       icon: FileText,
-      title: "Material Didático Exclusivo",
-      desc: "Apostilas físicas completas e provas inéditas com modelo TRI, elaboradas por especialistas.",
-      image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=800&auto=format&fit=crop"
+      title: "Material Físico Exclusivo",
+      desc: "Apostilas impressas completas e listas de exercícios inéditas moldadas no padrão TRI.",
+      image: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?q=80&w=800&auto=format&fit=crop"
     },
     {
       icon: PenTool,
-      title: "Clínica de Redação Presencial",
-      desc: "Correção detalhada lado a lado com o professor para você alcançar a nota 1000 na redação.",
+      title: "Clínica de Redação Individual",
+      desc: "Correção detalhada ao lado do professor para você atingir nota 1000 na Redação do ENEM.",
       image: "https://images.unsplash.com/photo-1455390582262-044cdead2708?q=80&w=800&auto=format&fit=crop"
     },
     {
       icon: HeartHandshake,
-      title: "Acompanhamento Humano",
-      desc: "Mentoria individualizada para lidar com a ansiedade e construir rotinas de estudo sólidas no presencial.",
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop"
+      title: "Apoio Psicológico Ativo",
+      desc: "Mentoria humana integral para combater a ansiedade e equilibrar sua rotina de estudos.",
+      image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop"
     },
     {
       icon: BrainCircuit,
-      title: "A Melhor Equipe da Região",
-      desc: "Professores experientes e comprometidos com a sua aprovação, sempre disponíveis para tirar dúvidas.",
-      image: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=800&auto=format&fit=crop"
+      title: "Corpo Docente de Elite",
+      desc: "Professores especialistas e experientes com didática de alta performance para o vestibular.",
+      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop"
     },
     {
       icon: LayoutDashboard,
-      title: "Preparação Estratégica",
-      desc: "Análise de desempenho constante para direcionar os estudos onde você mais precisa evoluir.",
-      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop"
+      title: "Mentoria de Desempenho",
+      desc: "Acompanhamento estratégico constante de seus simulados para direcionar sua evolução.",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop"
     }
   ];
 
   return (
-    <section className="relative w-full py-24 px-6 overflow-hidden bg-gray-50">
+    <section className="relative w-full py-24 px-6 overflow-hidden bg-[#fafafa]">
       <div className="max-w-7xl mx-auto mb-16 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-end gap-6">
           <motion.div
@@ -57,10 +66,10 @@ export const Benefits = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center gap-2 mb-4 px-3 py-1.5 rounded-full bg-blue-100/50 border border-blue-200">
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+            <div className="inline-flex items-center gap-2 mb-4 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-200">
+              <div className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
               <span
-                className="text-xs font-bold uppercase tracking-widest text-blue-800"
+                className="text-xs font-black uppercase tracking-widest text-blue-900"
                 style={{ fontFamily: "Lato, sans-serif" }}
               >
                 Diferenciais do Presencial
@@ -68,42 +77,53 @@ export const Benefits = () => {
             </div>
 
             <h2
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+              className="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight"
               style={{ fontFamily: "Merriweather, Georgia, serif" }}
             >
               A estrutura da{" "}
               <span
-                className="bg-clip-text text-transparent"
-                style={{ backgroundImage: "linear-gradient(90deg, #1a56c4 0%, #3b82f6 100%)" }}
+                className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400"
               >
                 Aprovação
               </span>
             </h2>
             <p
-              className="text-gray-600 text-lg max-w-xl"
-              style={{ fontFamily: "Lato, sans-serif", fontWeight: 300 }}
+              className="text-slate-500 text-lg max-w-xl font-light"
+              style={{ fontFamily: "Lato, sans-serif" }}
             >
-              Interação real, foco total e ambiente projetado para maximizar o seu aprendizado.
+              Interação humana, foco total e metodologia de ponta desenhada para transformar o seu resultado.
             </p>
           </motion.div>
           
+          {/* Navegação por Setas Customizadas Premium */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="hidden md:flex gap-2"
+            className="flex items-center gap-4"
           >
-            <div className="p-3 bg-white rounded-full shadow-sm border border-gray-100 flex items-center justify-center">
-              <span className="text-xs font-bold text-gray-400 uppercase tracking-widest" style={{ fontFamily: "Lato, sans-serif" }}>Arraste para ver mais ➔</span>
-            </div>
+            <button
+              onClick={scrollPrev}
+              className="w-12 h-12 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-500 transition-all duration-300 hover:scale-105 active:scale-95 shadow-sm hover:shadow-md cursor-pointer"
+              aria-label="Anterior"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={scrollNext}
+              className="w-12 h-12 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-500 transition-all duration-300 hover:scale-105 active:scale-95 shadow-sm hover:shadow-md cursor-pointer"
+              aria-label="Próximo"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
           </motion.div>
         </div>
       </div>
 
       {/* Carrossel Embla */}
       <div className="relative w-full max-w-[1400px] mx-auto cursor-grab active:cursor-grabbing">
-        <div className="overflow-hidden px-4 md:px-12 py-4" ref={emblaRef}>
-          <div className="flex gap-6 md:gap-8">
+        <div className="overflow-hidden px-4 md:px-8 py-4" ref={emblaRef}>
+          <div className="flex gap-6">
             {benefits.map((item, idx) => (
               <motion.div
                 key={idx}
@@ -112,36 +132,36 @@ export const Benefits = () => {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: idx * 0.08, duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }}
                 whileHover={{ 
-                  y: -12, 
+                  y: -10, 
                   scale: 1.02,
-                  boxShadow: "0 20px 40px -15px rgba(26, 86, 196, 0.25)"
+                  boxShadow: "0 20px 40px -15px rgba(26, 86, 196, 0.15)"
                 }}
-                className="relative flex-shrink-0 w-[85vw] sm:w-[350px] lg:w-[400px] h-[450px] rounded-3xl overflow-hidden group shadow-md border border-gray-200/50 hover:border-blue-500/50 transition-all duration-300 cursor-pointer bg-white"
+                className="relative flex-shrink-0 w-[290px] sm:w-[320px] h-[380px] rounded-[2rem] overflow-hidden group shadow-md border border-slate-200/50 hover:border-blue-500/50 transition-all duration-300 cursor-pointer bg-white"
               >
                 {/* Background Image com zoom suave */}
                 <img 
                   src={item.image} 
                   alt={item.title} 
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                 />
                 
                 {/* Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/60 to-transparent opacity-90 group-hover:opacity-85 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent opacity-95 group-hover:opacity-90 transition-opacity duration-300" />
                 <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay" />
 
                 {/* Content */}
-                <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                  <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-6 text-white group-hover:scale-110 group-hover:bg-brand-primary group-hover:border-transparent group-hover:rotate-6 transition-all duration-500 shadow-xl">
-                    <item.icon className="w-7 h-7 transition-transform duration-300 group-hover:scale-110" />
+                <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                  <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-4 text-white group-hover:scale-110 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-blue-400 group-hover:border-transparent group-hover:rotate-6 transition-all duration-500 shadow-xl">
+                    <item.icon className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
                   </div>
                   <h3
-                    className="text-2xl font-bold text-white mb-3 group-hover:text-amber-300 transition-colors duration-300"
+                    className="text-xl font-bold text-white mb-2 group-hover:text-amber-300 transition-colors duration-300"
                     style={{ fontFamily: "Merriweather, Georgia, serif" }}
                   >
                     {item.title}
                   </h3>
                   <p 
-                    className="text-white/80 leading-relaxed text-sm group-hover:text-white transition-colors duration-300" 
+                    className="text-slate-300 leading-relaxed text-xs font-light group-hover:text-white transition-colors duration-300" 
                     style={{ fontFamily: "Lato, sans-serif" }}
                   >
                     {item.desc}
