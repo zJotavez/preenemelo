@@ -10,7 +10,7 @@ export const Teachers = () => {
 
   // Configuração do carrossel Embla para loop infinito
   const [emblaRef] = useEmblaCarousel({ loop: true, align: "start", dragFree: true }, [
-    Autoplay({ delay: 3000, stopOnInteraction: true, stopOnMouseEnter: true })
+    Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: false })
   ]);
 
   // Duplicando a lista para garantir que o carrossel infinito pareça cheio mesmo com poucos professores
@@ -75,9 +75,9 @@ export const Teachers = () => {
         </div>
       </div>
 
-      {/* Carrossel Infinito */}
-      <div className="relative w-full max-w-[1400px] mx-auto cursor-grab active:cursor-grabbing z-20">
-        <div className="overflow-hidden px-4 md:px-12 py-4" ref={emblaRef}>
+      {/* Carrossel Infinito de tela infinita, transbordando de ponta a ponta na janela física */}
+      <div className="relative w-full cursor-grab active:cursor-grabbing z-20 overflow-hidden">
+        <div className="overflow-hidden w-full px-4 md:px-12 lg:px-24 py-4" ref={emblaRef}>
           <div className="flex gap-6 md:gap-8">
             {carouselTeachers.map((teacher, idx) => {
               // Paletas adaptadas para combinar com as cores de destaque dos professores

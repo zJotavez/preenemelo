@@ -7,7 +7,7 @@ import { PlayCircle, FileText, PenTool, LayoutDashboard, BrainCircuit, HeartHand
 export const Benefits = () => {
   // Configuração do carrossel: loop infinito, arraste ativado e autoplay
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start", dragFree: true }, [
-    Autoplay({ delay: 3500, stopOnInteraction: true, stopOnMouseEnter: true })
+    Autoplay({ delay: 3500, stopOnInteraction: false, stopOnMouseEnter: false })
   ]);
 
   const scrollPrev = useCallback(() => {
@@ -120,9 +120,9 @@ export const Benefits = () => {
         </div>
       </div>
 
-      {/* Carrossel Embla */}
-      <div className="relative w-full max-w-[1400px] mx-auto cursor-grab active:cursor-grabbing">
-        <div className="overflow-hidden px-4 md:px-8 py-4" ref={emblaRef}>
+      {/* Carrossel Embla de tela infinita, transbordando de ponta a ponta na janela física */}
+      <div className="relative w-full cursor-grab active:cursor-grabbing overflow-hidden">
+        <div className="overflow-hidden w-full px-4 md:px-12 lg:px-24 py-4" ref={emblaRef}>
           <div className="flex gap-6">
             {benefits.map((item, idx) => (
               <motion.div

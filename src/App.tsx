@@ -14,15 +14,40 @@ import { Gallery } from "./components/sections/Gallery";
 import { Testimonials } from "./components/sections/Testimonials";
 import { FinalCta } from "./components/sections/FinalCta";
 import { TeacherPage } from "./pages/TeacherPage";
+import { NewsPage } from "./pages/NewsPage";
 import { Loader } from "./components/ui/Loader";
 import { PageTransition } from "./components/ui/PageTransition";
 
-// Componente para rolar a tela até o topo ao mudar de rota
+// Componente para rolar a tela até o topo ou restaurar a posição salva
 function ScrollToTop() {
   const { pathname } = useLocation();
   
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (pathname === "/") {
+      const savedPosition = sessionStorage.getItem("homeScrollPosition");
+      if (savedPosition) {
+        // Aguarda a renderização do layout para aplicar a posição de scroll correta
+        const timer = setTimeout(() => {
+          window.scrollTo({
+            top: parseInt(savedPosition, 10),
+            behavior: "instant"
+          });
+        }, 120);
+        return () => clearTimeout(timer);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (pathname === "/") {
+      const handleScroll = () => {
+        sessionStorage.setItem("homeScrollPosition", window.scrollY.toString());
+      };
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
   }, [pathname]);
 
   return null;
@@ -48,6 +73,14 @@ function AnimatedRoutes() {
           element={
             <PageTransition>
               <TeacherPage />
+            </PageTransition>
+          } 
+        />
+        <Route 
+          path="/news/:id" 
+          element={
+            <PageTransition>
+              <NewsPage />
             </PageTransition>
           } 
         />

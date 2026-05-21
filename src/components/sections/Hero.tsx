@@ -45,24 +45,17 @@ export const Hero = () => {
         <div className="absolute inset-0 bg-[#0f172a]/70 mix-blend-multiply" />
       </motion.div>
 
-      {/* Nebulosas de Fundo Animadas e Dinâmicas (Efeito Degradê Emocionante) */}
+      {/* Padrão geométrico de fundo/textura atrás da interseção das faixas */}
+      <div className="absolute top-12 sm:top-20 left-1/2 -translate-x-1/2 w-[90%] md:w-[600px] h-[350px] pointer-events-none z-10 opacity-[0.12] bg-[radial-gradient(#f59e0b_1.5px,transparent_1.5px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_100%)] transform-gpu" />
+
+      {/* Nebulosas de Fundo Animadas e Dinâmicas (Otimizadas com transform-gpu para performance máxima de 60fps) */}
       <motion.div
         style={{ y: yLight1Value }}
-        animate={{ 
-          scale: [1, 1.15, 1],
-          opacity: [0.35, 0.45, 0.35],
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 right-[-10%] w-[500px] h-[500px] rounded-full bg-blue-600/30 blur-[120px] pointer-events-none z-10"
+        className="absolute top-1/4 right-[-10%] w-[500px] h-[500px] rounded-full bg-blue-600/20 blur-[120px] pointer-events-none z-10 transform-gpu will-change-transform"
       />
       <motion.div
         style={{ y: yLight2Value }}
-        animate={{ 
-          scale: [1, 1.2, 1],
-          opacity: [0.25, 0.35, 0.25],
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute bottom-10 left-[-10%] w-[600px] h-[600px] rounded-full bg-amber-500/20 blur-[130px] pointer-events-none z-10"
+        className="absolute bottom-10 left-[-10%] w-[600px] h-[600px] rounded-full bg-amber-500/15 blur-[130px] pointer-events-none z-10 transform-gpu will-change-transform"
       />
 
       {/* Faixas Cruzadas em X (Marquees de Inscrições Abertas) - Mais Espaçadas */}
@@ -112,18 +105,8 @@ export const Hero = () => {
           {/* Coluna da Esquerda: Textos e Botão (col-span-7) */}
           <div className="lg:col-span-7 flex flex-col items-start text-left relative z-10">
             
-            {/* Tag/Badge de Lançamento */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 backdrop-blur-md"
-            >
-              <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
-              <span className="text-xs font-bold uppercase tracking-widest text-blue-200" style={{ fontFamily: "Lato, sans-serif" }}>
-                Cursinho Preparatório Presencial • 2026
-              </span>
-            </motion.div>
+            {/* Espaço de respiro opcional */}
+            <div className="mb-4" />
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -224,16 +207,8 @@ export const Hero = () => {
               </div>
 
               {/* Elementos flutuantes dentro do card 3D */}
-              {/* Badge Superior */}
-              <div 
-                className="relative z-10 self-start px-4 py-2 bg-[#020617]/80 backdrop-blur-md border border-white/10 rounded-full flex items-center gap-2 shadow-lg"
-                style={isMobile ? {} : { transform: "translateZ(40px)" }}
-              >
-                <GraduationCap className="w-4 h-4 text-amber-400" />
-                <span className="text-[10px] font-bold text-white uppercase tracking-widest" style={{ fontFamily: "Lato, sans-serif" }}>
-                  O Seu Futuro Universitário
-                </span>
-              </div>
+              {/* Espaço para layout do flex-row superior */}
+              <div className="relative z-10 self-start" />
 
               {/* Conteúdo de Texto na Base */}
               <div 
@@ -241,13 +216,13 @@ export const Hero = () => {
                 style={isMobile ? {} : { transform: "translateZ(50px)" }}
               >
                 <div className="inline-block px-3 py-1 bg-amber-500 text-black text-[9px] font-black uppercase tracking-widest rounded-md" style={{ fontFamily: "Lato, sans-serif" }}>
-                  META 2026
+                  UFCG & UEPB 2026
                 </div>
                 <h3 className="text-2xl font-bold text-white leading-tight" style={{ fontFamily: "Merriweather, Georgia, serif" }}>
-                  Conquiste a sua vaga federal.
+                  Sua vaga na Federal da Paraíba.
                 </h3>
                 <p className="text-slate-300 text-xs font-light leading-relaxed max-w-[90%]" style={{ fontFamily: "Lato, sans-serif" }}>
-                  Estude em um ambiente presencial de alta performance e prepare-se para transformar a sua realidade social.
+                  Estude em Campina Grande com foco total na UFCG e UEPB. A preparação de elite gratuita para o seu sucesso.
                 </p>
               </div>
 
