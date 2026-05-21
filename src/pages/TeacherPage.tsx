@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform } from "motion/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, GraduationCap, Briefcase, Star, Quote, ChevronDown } from "lucide-react";
 import { teachers } from "../data/teachers";
 import { Header } from "../components/Header";
@@ -10,8 +10,19 @@ export const TeacherPage = () => {
   const navigate = useNavigate();
   const teacher = teachers.find((t) => t.id === id);
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const { scrollYProgress } = useScroll();
   const yImage = useTransform(scrollYProgress, [0, 1], [0, 300]);
+  const yImageValue = isMobile ? 0 : yImage;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -55,7 +66,7 @@ export const TeacherPage = () => {
       >
         {/* Foto Parallax de Fundo */}
         <motion.div 
-          style={{ y: yImage }}
+          style={{ y: yImageValue }}
           className="absolute inset-0 z-0 opacity-40 mix-blend-luminosity"
         >
           <img src={teacher.photo} alt={teacher.name} className="w-full h-[120%] object-cover object-top blur-sm scale-110" />

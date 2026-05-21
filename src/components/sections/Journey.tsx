@@ -1,9 +1,17 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Rocket, BookOpenCheck, LineChart, Trophy } from "lucide-react";
 
 export const Journey = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -43,16 +51,23 @@ export const Journey = () => {
     <section ref={containerRef} className="relative w-full py-32 px-6 overflow-hidden bg-slate-950">
       {/* Background Animado com Nebulosa e Partículas */}
       <div className="absolute inset-0 z-0">
-        <motion.div 
-          animate={{ rotate: 360 }}
-          transition={{ duration: 180, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] opacity-15"
-          style={{ background: 'conic-gradient(from 0deg, transparent 0%, #3b82f6 25%, transparent 50%, #f59e0b 75%, transparent 100%)' }}
-        />
+        {!isMobile ? (
+          <motion.div 
+            animate={{ rotate: 360 }}
+            transition={{ duration: 180, repeat: Infinity, ease: "linear" }}
+            className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] opacity-15"
+            style={{ background: 'conic-gradient(from 0deg, transparent 0%, #3b82f6 25%, transparent 50%, #f59e0b 75%, transparent 100%)' }}
+          />
+        ) : (
+          <div 
+            className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] opacity-10"
+            style={{ background: 'conic-gradient(from 0deg, transparent 0%, #3b82f6 25%, transparent 50%, #f59e0b 75%, transparent 100%)' }}
+          />
+        )}
         <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-3xl" />
         
-        {/* Partículas Flutuantes performáticas */}
-        {Array.from({ length: 20 }).map((_, i) => (
+        {/* Partículas Flutuantes performáticas (desativadas no mobile) */}
+        {!isMobile && Array.from({ length: 20 }).map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 rounded-full pointer-events-none"
@@ -89,8 +104,8 @@ export const Journey = () => {
             </span>
           </div>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={isMobile ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-black text-white tracking-tight"
             style={{ fontFamily: "Merriweather, Georgia, serif" }}
@@ -108,10 +123,10 @@ export const Journey = () => {
           {/* Linha Fina Central de Fundo */}
           <div className="absolute left-[39px] md:left-1/2 top-0 bottom-0 w-[1px] bg-white/10 md:-translate-x-1/2" />
           
-          {/* Linha Iluminada Ativa em Scroll */}
+          {/* Linha Iluminada Ativa em Scroll (estática em 100% no mobile para evitar lag) */}
           <motion.div 
             className="absolute left-[39px] md:left-1/2 top-0 w-[3px] bg-gradient-to-b from-blue-500 via-amber-400 to-amber-500 md:-translate-x-1/2 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.5)]"
-            style={{ height: lineHeight }}
+            style={{ height: isMobile ? "100%" : lineHeight }}
           />
 
           <div className="flex flex-col gap-16 md:gap-24">
@@ -123,21 +138,21 @@ export const Journey = () => {
                   <step.icon className="w-5 h-5 text-slate-600" />
                 </div>
                 
-                {/* Visual Node Ativo (Iluminado no Scroll) */}
+                {/* Visual Node Ativo (Iluminado no Scroll) - Estático no mobile */}
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
+                  whileInView={isMobile ? {} : { opacity: 1, scale: 1 }}
                   viewport={{ margin: "-50% 0px -50% 0px" }}
                   className="absolute left-4 md:left-1/2 w-12 h-12 bg-gradient-to-br from-blue-600 to-amber-500 border border-white/20 rounded-full md:-translate-x-1/2 flex items-center justify-center z-20 shadow-[0_0_20px_rgba(245,158,11,0.6)]"
                 >
                   <step.icon className="w-5 h-5 text-white" />
                 </motion.div>
 
-                {/* Conteúdo do Card Ajustado de Tamanho */}
+                {/* Conteúdo do Card Ajustado de Tamanho - Animações simplificadas no mobile */}
                 <div className={`w-full md:w-1/2 pl-20 md:pl-0 flex flex-col group ${idx % 2 === 0 ? "md:items-start" : "md:items-end"}`}>
                   <motion.div
-                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    initial={isMobile ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.95 }}
+                    whileInView={isMobile ? {} : { opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, type: "spring", bounce: 0.2 }}
                     className={`relative rounded-3xl overflow-hidden shadow-2xl w-full max-w-[430px] border border-white/5 group-hover:border-amber-500/20 transition-colors duration-500 bg-slate-900/40`}

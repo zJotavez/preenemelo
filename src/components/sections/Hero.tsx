@@ -1,8 +1,18 @@
+import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { Button } from "../ui/Button";
 import { Sparkles, ArrowRight, GraduationCap } from "lucide-react";
 
 export const Hero = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const { scrollY } = useScroll();
   
   // Efeito paralaxe na imagem de fundo e nos elementos de luz (move 15% da velocidade do scroll)
@@ -13,11 +23,16 @@ export const Hero = () => {
   const yLight1 = useTransform(scrollY, [0, 1000], ["0px", "-100px"]);
   const yLight2 = useTransform(scrollY, [0, 1000], ["0px", "100px"]);
 
+  const yBgValue = isMobile ? "0%" : yBg;
+  const yTextValue = isMobile ? "0px" : yText;
+  const yLight1Value = isMobile ? "0px" : yLight1;
+  const yLight2Value = isMobile ? "0px" : yLight2;
+
   return (
     <section className="relative w-full min-h-[100vh] lg:min-h-[110vh] flex flex-col justify-center overflow-hidden bg-brand-void pt-20">
       {/* Imagem de Fundo em Paralaxe Suave */}
       <motion.div 
-        style={{ y: yBg }}
+        style={{ y: yBgValue }}
         className="absolute inset-0 z-0 scale-105"
       >
         <img 
@@ -32,7 +47,7 @@ export const Hero = () => {
 
       {/* Nebulosas de Fundo Animadas e Dinâmicas (Efeito Degradê Emocionante) */}
       <motion.div
-        style={{ y: yLight1 }}
+        style={{ y: yLight1Value }}
         animate={{ 
           scale: [1, 1.15, 1],
           opacity: [0.35, 0.45, 0.35],
@@ -41,7 +56,7 @@ export const Hero = () => {
         className="absolute top-1/4 right-[-10%] w-[500px] h-[500px] rounded-full bg-blue-600/30 blur-[120px] pointer-events-none z-10"
       />
       <motion.div
-        style={{ y: yLight2 }}
+        style={{ y: yLight2Value }}
         animate={{ 
           scale: [1, 1.2, 1],
           opacity: [0.25, 0.35, 0.25],
@@ -89,8 +104,8 @@ export const Hero = () => {
 
       {/* Grid Principal do Conteúdo (Elevado para z-40 e usando transform-gpu para nitidez absoluta dos botões) */}
       <motion.div 
-        style={{ y: yText }}
-        className="w-full max-w-7xl mx-auto px-6 pt-64 pb-24 relative z-40 mt-10 md:mt-2 transform-gpu"
+        style={{ y: yTextValue }}
+        className="w-full max-w-7xl mx-auto px-6 pt-44 sm:pt-64 pb-16 sm:pb-24 relative z-40 mt-16 sm:mt-10 md:mt-2 transform-gpu"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center">
           
@@ -184,14 +199,14 @@ export const Hero = () => {
           >
             {/* Card com efeito de rotação 3D no hover e borda brilhante */}
             <motion.div
-              whileHover={{ 
+              whileHover={isMobile ? { scale: 1.02 } : { 
                 rotateX: -6, 
                 rotateY: 10,
                 scale: 1.03,
                 z: 50
               }}
-              style={{ transformStyle: "preserve-3d", perspective: 1000 }}
-              className="relative w-full max-w-[420px] h-[480px] rounded-[2.5rem] bg-gradient-to-br from-blue-500/10 to-amber-500/5 border border-white/10 p-5 shadow-2xl flex flex-col justify-between overflow-hidden group cursor-pointer"
+              style={isMobile ? {} : { transformStyle: "preserve-3d", perspective: 1000 }}
+              className="relative w-full max-w-[420px] h-[360px] sm:h-[480px] rounded-[2.5rem] bg-gradient-to-br from-blue-500/10 to-amber-500/5 border border-white/10 p-5 shadow-2xl flex flex-col justify-between overflow-hidden group cursor-pointer"
             >
               {/* Glow circular de fundo do card que acompanha o mouse indiretamente */}
               <div className="absolute -inset-10 bg-gradient-to-tr from-blue-600/20 to-amber-500/20 rounded-[3rem] blur-3xl opacity-0 group-hover:opacity-100 transition duration-700 pointer-events-none" />
@@ -212,7 +227,7 @@ export const Hero = () => {
               {/* Badge Superior */}
               <div 
                 className="relative z-10 self-start px-4 py-2 bg-[#020617]/80 backdrop-blur-md border border-white/10 rounded-full flex items-center gap-2 shadow-lg"
-                style={{ transform: "translateZ(40px)" }}
+                style={isMobile ? {} : { transform: "translateZ(40px)" }}
               >
                 <GraduationCap className="w-4 h-4 text-amber-400" />
                 <span className="text-[10px] font-bold text-white uppercase tracking-widest" style={{ fontFamily: "Lato, sans-serif" }}>
@@ -223,7 +238,7 @@ export const Hero = () => {
               {/* Conteúdo de Texto na Base */}
               <div 
                 className="relative z-10 flex flex-col items-start gap-2"
-                style={{ transform: "translateZ(50px)" }}
+                style={isMobile ? {} : { transform: "translateZ(50px)" }}
               >
                 <div className="inline-block px-3 py-1 bg-amber-500 text-black text-[9px] font-black uppercase tracking-widest rounded-md" style={{ fontFamily: "Lato, sans-serif" }}>
                   META 2026

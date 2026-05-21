@@ -1,7 +1,17 @@
+import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowUpRight, Target, Users, BookOpen, PlayCircle } from "lucide-react";
 
 export const About = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const { scrollY } = useScroll();
 
   // Movimento de paralaxe oposto para dar um efeito de profundidade incrível à direita
@@ -9,11 +19,15 @@ export const About = () => {
   const yVideo = useTransform(scrollY, [200, 1400], ["0px", "50px"]);
   const yBgShape = useTransform(scrollY, [200, 1400], ["0px", "-100px"]);
 
+  const yImageValue = isMobile ? "0px" : yImage;
+  const yVideoValue = isMobile ? "0px" : yVideo;
+  const yBgShapeValue = isMobile ? "0px" : yBgShape;
+
   return (
     <section className="relative w-full py-28 px-6 overflow-hidden bg-white">
       {/* Elementos orgânicos de fundo com paralaxe sutil */}
       <motion.div 
-        style={{ y: yBgShape }}
+        style={{ y: yBgShapeValue }}
         className="absolute top-0 right-0 w-1/3 h-[500px] bg-blue-50/70 rounded-bl-full blur-3xl -z-10" 
       />
       <div className="absolute bottom-0 left-0 w-1/4 h-[400px] bg-amber-50/40 rounded-tr-full blur-3xl -z-10" />
@@ -121,7 +135,7 @@ export const About = () => {
             
             {/* Foto Orgânica Real da Escola/Universidade */}
             <motion.div 
-              style={{ y: yImage }}
+              style={{ y: yImageValue }}
               className="relative h-[400px] w-full rounded-[2.5rem] rounded-tr-[5rem] rounded-bl-[5rem] overflow-hidden shadow-2xl border-4 border-white z-10 cursor-pointer group"
             >
               <div
@@ -154,7 +168,7 @@ export const About = () => {
 
             {/* Placeholder de Vídeo YouTube com deslocamento de paralaxe oposto */}
             <motion.div 
-              style={{ y: yVideo }}
+              style={{ y: yVideoValue }}
               className="relative h-[250px] w-full rounded-3xl overflow-hidden shadow-xl border border-gray-100 group cursor-pointer bg-gray-950 z-20"
             >
               {/* Espaço para o iFrame no futuro */}

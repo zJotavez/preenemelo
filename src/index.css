@@ -21,13 +21,26 @@
   html {
     scroll-behavior: smooth;
   }
-  body {
+  html, body, #root {
     background-color: var(--color-brand-darker);
     color: var(--color-brand-light);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: "Lato", "Source Sans 3", sans-serif;
+
+    /* Desativa cópia e seleção de texto globalmente */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  /* Exceções explícitas para manter formulários de inscrição 100% funcionais */
+  input, textarea, select, [contenteditable="true"] {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
   }
   ::selection {
     background: var(--color-brand-primary);
