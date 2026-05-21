@@ -8,7 +8,7 @@ export const Opportunities = () => {
       label: "Apoio Emocional", 
       value: "Psicologia", 
       desc: "Suporte e mentoria profissional humana",
-      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=600&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?q=80&w=600&auto=format&fit=crop",
       accent: "from-blue-600/40 to-blue-900/60",
       glow: "rgba(59, 130, 246, 0.3)"
     },
@@ -17,7 +17,7 @@ export const Opportunities = () => {
       label: "Material Físico", 
       value: "Apostilas", 
       desc: "Cadernos 100% impressos e atualizados",
-      image: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=600&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=600&auto=format&fit=crop",
       accent: "from-amber-600/40 to-amber-900/60",
       glow: "rgba(245, 158, 11, 0.3)"
     },
@@ -26,7 +26,7 @@ export const Opportunities = () => {
       label: "Atendimento", 
       value: "Plantões", 
       desc: "Tira-dúvidas presencial individual",
-      image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=600&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop",
       accent: "from-blue-600/40 to-blue-900/60",
       glow: "rgba(59, 130, 246, 0.3)"
     },
@@ -35,7 +35,7 @@ export const Opportunities = () => {
       label: "Infraestrutura", 
       value: "Conforto", 
       desc: "Salas climatizadas e ambiente premium",
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600&auto=format&fit=crop",
       accent: "from-amber-600/40 to-amber-900/60",
       glow: "rgba(245, 158, 11, 0.3)"
     },
@@ -146,16 +146,16 @@ export const Opportunities = () => {
                     }}
                     className="relative bg-slate-900/60 rounded-[2rem] p-6 overflow-hidden border border-white/5 hover:border-white/10 transition-all duration-500 group cursor-pointer"
                   >
-                    {/* Imagem de Fundo Unsplash */}
+                    {/* Imagem de Fundo Unsplash (Colorida e vibrante por padrão) */}
                     <img 
                       src={item.image} 
                       alt={item.value} 
-                      className="absolute inset-0 w-full h-full object-cover grayscale opacity-10 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:grayscale-0 group-hover:opacity-30"
+                      className="absolute inset-0 w-full h-full object-cover opacity-30 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:opacity-60"
                     />
 
                     {/* Gradient Overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-t ${item.accent} mix-blend-multiply opacity-50 z-0`} />
-                    <div className="absolute inset-0 bg-slate-950/80 z-0" />
+                    <div className={`absolute inset-0 bg-gradient-to-t ${item.accent} mix-blend-multiply opacity-40 z-0`} />
+                    <div className="absolute inset-0 bg-slate-950/50 group-hover:bg-slate-950/30 transition-colors duration-500 z-0" />
 
                     <div className="relative z-10 flex flex-col h-full justify-between">
                       <div>

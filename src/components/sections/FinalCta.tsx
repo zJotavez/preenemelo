@@ -121,43 +121,168 @@ export const FinalCta = () => {
       </div>
 
       {/* Footer minimalista, fino e com acabamento de luxo */}
-      <footer className="relative z-10 w-full mt-32 text-center pb-8 border-t border-white/5 pt-12">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-slate-500 text-sm font-medium" style={{ fontFamily: "Lato, sans-serif" }}>
-            © {new Date().getFullYear()} Pré Enem Elo. Moldando novos horizontes e aprovações.
-          </p>
+      <footer className="relative z-10 w-full mt-32 border-t border-white/5 pt-20 pb-12 bg-slate-950/80 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-6">
           
-          <div className="flex items-center gap-8 text-xs font-extrabold uppercase tracking-widest text-slate-400" style={{ fontFamily: "Lato, sans-serif" }}>
-            <a 
-              href="https://instagram.com" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="flex items-center gap-1.5 hover:text-amber-500 transition-colors group"
-            >
-              <Instagram className="w-4 h-4 text-amber-500/80 group-hover:text-amber-500 transition-colors" />
-              <span>Instagram</span>
-            </a>
-            
-            <a 
-              href="https://wa.me/5583999999999" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="flex items-center gap-1.5 hover:text-amber-500 transition-colors group"
-            >
-              <Phone className="w-4 h-4 text-amber-500/80 group-hover:text-amber-500 transition-colors" />
-              <span>WhatsApp</span>
-            </a>
-            
-            <a 
-              href="https://maps.google.com" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="flex items-center gap-1.5 hover:text-amber-500 transition-colors group"
-            >
-              <MapPin className="w-4 h-4 text-amber-500/80 group-hover:text-amber-500 transition-colors" />
-              <span>Sede CG</span>
-            </a>
+          {/* Grade Principal do Rodapé */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-left">
+            {/* Coluna 1: Identidade */}
+            <div className="flex flex-col gap-4">
+              <span className="text-2xl font-black text-white font-display tracking-tight flex items-center gap-2">
+                PRÉ ENEM <span className="text-amber-400">ELO</span>
+              </span>
+              <p className="text-slate-400 text-sm leading-relaxed font-light" style={{ fontFamily: "Lato, sans-serif" }}>
+                Transformando realidades através da educação presencial de alta performance. Cursinho 100% gratuito voltado à aprovação na universidade pública.
+              </p>
+            </div>
+
+            {/* Coluna 2: Navegação */}
+            <div className="flex flex-col gap-4">
+              <h4 className="text-sm font-bold text-white uppercase tracking-wider" style={{ fontFamily: "Lato, sans-serif" }}>
+                Navegação
+              </h4>
+              <ul className="flex flex-col gap-2.5 text-sm text-slate-400" style={{ fontFamily: "Lato, sans-serif" }}>
+                <li>
+                  <a href="#about" className="hover:text-amber-400 transition-colors duration-200">Sobre o Projeto</a>
+                </li>
+                <li>
+                  <a href="#benefits" className="hover:text-amber-400 transition-colors duration-200">Diferenciais</a>
+                </li>
+                <li>
+                  <a href="#areas" className="hover:text-amber-400 transition-colors duration-200">Áreas do ENEM</a>
+                </li>
+                <li>
+                  <a href="#teachers" className="hover:text-amber-400 transition-colors duration-200">Nossos Professores</a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Coluna 3: Páginas */}
+            <div className="flex flex-col gap-4">
+              <h4 className="text-sm font-bold text-white uppercase tracking-wider" style={{ fontFamily: "Lato, sans-serif" }}>
+                Páginas
+              </h4>
+              <ul className="flex flex-col gap-2.5 text-sm text-slate-400" style={{ fontFamily: "Lato, sans-serif" }}>
+                <li>
+                  <a href="#" className="hover:text-amber-400 transition-colors duration-200">Processo Seletivo 2026</a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-amber-400 transition-colors duration-200">Cronograma de Aulas</a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-amber-400 transition-colors duration-200">Regulamento Interno</a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-amber-400 transition-colors duration-200">Central de Dúvidas</a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Coluna 4: Contato & Atendimento */}
+            <div className="flex flex-col gap-4">
+              <h4 className="text-sm font-bold text-white uppercase tracking-wider" style={{ fontFamily: "Lato, sans-serif" }}>
+                Sede CG
+              </h4>
+              <p className="text-slate-400 text-sm leading-relaxed font-light" style={{ fontFamily: "Lato, sans-serif" }}>
+                Rua Paulo de Frontin, 217 - Centro<br />
+                Campina Grande - PB
+              </p>
+              <div className="flex flex-col gap-1.5 text-xs text-amber-400" style={{ fontFamily: "Lato, sans-serif" }}>
+                <span className="block font-bold">Atendimento Presencial:</span>
+                <span className="block text-slate-400">Segunda a Sexta — 18h às 22h</span>
+              </div>
+            </div>
           </div>
+
+          {/* Seção Central: Parceria ELO e suas Bandeiras */}
+          <div className="border-t border-white/5 py-10 mb-10 text-center">
+            <h4 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-6" style={{ fontFamily: "Lato, sans-serif" }}>
+              Parcerias Elo & Suas Bandeiras
+            </h4>
+            <div className="flex flex-wrap items-center justify-center gap-10 opacity-40 hover:opacity-60 transition-opacity duration-500">
+              {/* Bandeira 1 */}
+              <div className="flex items-center gap-2 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer">
+                <span className="w-6 h-6 rounded bg-amber-500 flex items-center justify-center text-slate-950 font-black text-xs">E</span>
+                <span className="text-sm font-bold text-white tracking-wider">ELO SOCIAL</span>
+              </div>
+              {/* Bandeira 2 */}
+              <div className="flex items-center gap-2 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer">
+                <span className="w-6 h-6 rounded bg-blue-500 flex items-center justify-center text-white font-black text-xs">U</span>
+                <span className="text-sm font-bold text-white tracking-wider">UNIÃO CG</span>
+              </div>
+              {/* Bandeira 3 */}
+              <div className="flex items-center gap-2 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer">
+                <span className="w-6 h-6 rounded bg-emerald-500 flex items-center justify-center text-slate-950 font-black text-xs">I</span>
+                <span className="text-sm font-bold text-white tracking-wider">INSTITUTO ELO</span>
+              </div>
+              {/* Bandeira 4 */}
+              <div className="flex items-center gap-2 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer">
+                <span className="w-6 h-6 rounded bg-indigo-500 flex items-center justify-center text-white font-black text-xs">F</span>
+                <span className="text-sm font-bold text-white tracking-wider">FUTURO CG</span>
+              </div>
+            </div>
+            <p className="text-[10px] text-slate-600 mt-4" style={{ fontFamily: "Lato, sans-serif" }}>
+              Os links e conexões das bandeiras serão configurados posteriormente.
+            </p>
+          </div>
+
+          {/* Linha Inferior com Assinatura e Redes Sociais */}
+          <div className="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex flex-col items-center md:items-start gap-1">
+              <p className="text-slate-500 text-sm font-medium" style={{ fontFamily: "Lato, sans-serif" }}>
+                © {new Date().getFullYear()} Pré Enem Elo. Todos os direitos reservados.
+              </p>
+              
+              {/* Assinatura profissional JvSitePro direcionando para o instagram */}
+              <motion.a 
+                href="https://www.instagram.com/jvsitepro/"
+                target="_blank"
+                rel="noreferrer"
+                whileHover={{ scale: 1.03 }}
+                className="text-xs text-slate-400 hover:text-amber-400 transition-colors duration-300 flex items-center gap-1 group mt-1"
+                style={{ fontFamily: "Lato, sans-serif" }}
+              >
+                <span>Criado por</span>
+                <span className="font-extrabold bg-gradient-to-r from-amber-400 to-yellow-300 bg-clip-text text-transparent group-hover:from-amber-300 group-hover:to-yellow-200 transition-all duration-300">
+                  JvSitePro
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 group-hover:animate-ping inline-block"></span>
+              </motion.a>
+            </div>
+            
+            <div className="flex items-center gap-8 text-xs font-extrabold uppercase tracking-widest text-slate-400" style={{ fontFamily: "Lato, sans-serif" }}>
+              <a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="flex items-center gap-1.5 hover:text-amber-500 transition-colors group"
+              >
+                <Instagram className="w-4 h-4 text-amber-500/80 group-hover:text-amber-500 transition-colors" />
+                <span>Instagram</span>
+              </a>
+              
+              <a 
+                href="https://wa.me/5583999999999" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="flex items-center gap-1.5 hover:text-amber-500 transition-colors group"
+              >
+                <Phone className="w-4 h-4 text-amber-500/80 group-hover:text-amber-500 transition-colors" />
+                <span>WhatsApp</span>
+              </a>
+              
+              <a 
+                href="https://maps.google.com" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="flex items-center gap-1.5 hover:text-amber-500 transition-colors group"
+              >
+                <MapPin className="w-4 h-4 text-amber-500/80 group-hover:text-amber-500 transition-colors" />
+                <span>Sede CG</span>
+              </a>
+            </div>
+          </div>
+
         </div>
       </footer>
     </section>

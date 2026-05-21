@@ -50,9 +50,9 @@ export const Hero = () => {
         className="absolute bottom-10 left-[-10%] w-[600px] h-[600px] rounded-full bg-amber-500/20 blur-[130px] pointer-events-none z-10"
       />
 
-      {/* Faixas Cruzadas em X (Marquees de Inscrições Abertas) */}
+      {/* Faixas Cruzadas em X (Marquees de Inscrições Abertas) - Mais Espaçadas */}
       {/* Faixa 1: Rotacionada para Baixo (\) */}
-      <div className="absolute top-28 sm:top-36 left-0 w-[120%] -left-[10%] overflow-hidden bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 py-3.5 z-20 flex whitespace-nowrap shadow-2xl transform -rotate-3 origin-center border-y border-amber-300/30">
+      <div className="absolute top-24 sm:top-28 left-0 w-[120%] -left-[10%] overflow-hidden bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 py-3.5 z-20 flex whitespace-nowrap shadow-2xl transform -rotate-3 origin-center border-y border-amber-300/30">
         <motion.div
           animate={{ x: ["0%", "-50%"] }}
           transition={{ ease: "linear", duration: 22, repeat: Infinity }}
@@ -69,28 +69,28 @@ export const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Faixa 2: Rotacionada para Cima (/) formando o X */}
-      <div className="absolute top-28 sm:top-36 left-0 w-[120%] -left-[10%] overflow-hidden bg-[#0c1e3d] py-3.5 z-20 flex whitespace-nowrap shadow-2xl transform rotate-3 origin-center border-y border-blue-400/20">
+      {/* Faixa 2: Rotacionada para Cima (/) formando o X - Amarela e Espaçada mais abaixo */}
+      <div className="absolute top-56 sm:top-68 left-0 w-[120%] -left-[10%] overflow-hidden bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 py-3.5 z-20 flex whitespace-nowrap shadow-2xl transform rotate-3 origin-center border-y border-amber-300/30">
         <motion.div
           animate={{ x: ["-50%", "0%"] }}
           transition={{ ease: "linear", duration: 25, repeat: Infinity }}
           className="flex whitespace-nowrap gap-12 items-center"
         >
           {Array(8).fill(null).map((_, i) => (
-            <span key={i} className="text-amber-400 font-black uppercase tracking-widest text-xs sm:text-sm flex items-center gap-12" style={{ fontFamily: "Lato, sans-serif" }}>
+            <span key={i} className="text-[#020617] font-black uppercase tracking-widest text-xs sm:text-sm flex items-center gap-12" style={{ fontFamily: "Lato, sans-serif" }}>
               VAGAS PRESENCIAIS LIMITADAS
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block shadow-sm"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-[#020617] inline-block shadow-sm"></span>
               MATRÍCULAS 100% GRATUITAS
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block shadow-sm"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-[#020617] inline-block shadow-sm"></span>
             </span>
           ))}
         </motion.div>
       </div>
 
-      {/* Grid Principal do Conteúdo */}
+      {/* Grid Principal do Conteúdo (Elevado para z-40 e usando transform-gpu para nitidez absoluta dos botões) */}
       <motion.div 
         style={{ y: yText }}
-        className="w-full max-w-7xl mx-auto px-6 pt-52 pb-24 relative z-10 mt-10 md:mt-2"
+        className="w-full max-w-7xl mx-auto px-6 pt-64 pb-24 relative z-40 mt-10 md:mt-2 transform-gpu"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center">
           
@@ -199,7 +199,7 @@ export const Hero = () => {
               {/* Imagem Premium de Graduação da Unsplash com efeito Parallax 3D */}
               <div className="absolute inset-4 rounded-[2rem] overflow-hidden z-0">
                 <motion.img 
-                  src="https://images.unsplash.com/photo-1523580494863-6f3031224b94?q=80&w=1000&auto=format&fit=crop" 
+                  src="/hero-uni.png" 
                   alt="Futuro dos Alunos - Aprovação" 
                   className="w-full h-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                 />
@@ -245,7 +245,7 @@ export const Hero = () => {
       </motion.div>
 
       {/* Degradê orgânico na base para transição extra suave à próxima seção */}
-      <div className="absolute bottom-0 left-0 w-full h-36 bg-gradient-to-t from-white via-white/80 to-transparent z-10" />
+      <div className="absolute bottom-0 left-0 w-full h-80 bg-gradient-to-t from-white via-white/80 via-white/40 via-white/10 to-transparent z-10" />
     </section>
   );
 };

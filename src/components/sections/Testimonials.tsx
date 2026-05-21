@@ -1,8 +1,10 @@
 import { motion } from "motion/react";
+import { useNavigate } from "react-router-dom";
 import { Clock, ArrowRight, Newspaper, Calendar } from "lucide-react";
 import { teachers } from "../../data/teachers";
 
 export const Testimonials = () => {
+  const navigate = useNavigate();
   const solange = teachers.find(t => t.id === "solange") || teachers[0];
   const matheus = teachers.find(t => t.id === "matheus-glaydson") || teachers[1];
   const fabio = teachers.find(t => t.id === "fabio-alves") || teachers[2];
@@ -53,6 +55,7 @@ export const Testimonials = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
+            onClick={() => navigate(`/professor/${solange.id}`)}
             className="lg:col-span-2 flex flex-col md:flex-row justify-between bg-slate-950 text-white rounded-[2.5rem] overflow-hidden border border-slate-900 shadow-2xl relative group cursor-pointer hover:border-amber-500/40 hover:shadow-amber-500/5 transition-all duration-500"
           >
             {/* Hover Glow Light */}
@@ -138,6 +141,7 @@ export const Testimonials = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
+              onClick={() => navigate(`/professor/${fabio.id}`)}
               className="bg-white text-slate-900 rounded-[2rem] p-8 border border-slate-100 shadow-md relative group cursor-pointer hover:shadow-xl hover:border-amber-500/20 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-1/2 min-h-[220px]"
             >
               <div>
@@ -186,6 +190,7 @@ export const Testimonials = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
+              onClick={() => navigate(`/professor/${matheus.id}`)}
               className="bg-white text-slate-900 rounded-[2rem] p-8 border border-slate-100 shadow-md relative group cursor-pointer hover:shadow-xl hover:border-amber-500/20 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-1/2 min-h-[220px]"
             >
               <div>

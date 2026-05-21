@@ -99,7 +99,7 @@ export const Gallery = () => {
                 allowFullScreen={true}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="absolute inset-0 grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 pointer-events-auto"
+                className="absolute inset-0 opacity-95 group-hover:opacity-100 transition-all duration-700 pointer-events-auto"
                 title="Sede Pré Enem Elo"
               />
               {/* Overlay suave nas bordas para blend estético */}
