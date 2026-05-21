@@ -76,12 +76,14 @@ export const FinalCta = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
             >
-              <button
-                className="w-full sm:w-auto px-12 py-5 bg-amber-500 hover:bg-amber-400 text-slate-900 font-black text-xl rounded-full shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] transform hover:-translate-y-1 transition-all duration-300"
+              <Button
+                variant="primary"
+                size="lg"
+                className="w-full sm:w-auto px-12 py-5 bg-amber-500 hover:bg-amber-400 text-slate-900 font-black text-xl rounded-full shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] border-transparent transition-all duration-300"
                 style={{ fontFamily: "Lato, sans-serif" }}
               >
                 Fazer Minha Inscrição Agora
-              </button>
+              </Button>
             </motion.div>
           </div>
         </motion.div>

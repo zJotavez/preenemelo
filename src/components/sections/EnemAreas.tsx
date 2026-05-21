@@ -89,38 +89,47 @@ export const EnemAreas = () => {
               {areas.map((area, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0.95, y: 15 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className={`group relative h-48 bg-white rounded-3xl flex flex-col justify-between p-6 overflow-hidden hover:-translate-y-2 shadow-sm hover:shadow-xl transition-all duration-400 border border-gray-100 ${idx === 4 ? 'sm:col-span-2 md:col-span-1' : ''}`}
+                  transition={{ delay: idx * 0.08, duration: 0.5, ease: [0.215, 0.61, 0.355, 1] }}
+                  whileHover={{ 
+                    y: -10, 
+                    scale: 1.03,
+                    boxShadow: "0 15px 30px -10px rgba(0,0,0,0.08)"
+                  }}
+                  className={`group relative h-48 bg-white rounded-3xl flex flex-col justify-between p-6 overflow-hidden transition-all duration-300 border border-gray-100/80 cursor-pointer ${idx === 4 ? 'sm:col-span-2 md:col-span-1' : ''}`}
                 >
-                  {/* Fundo animado que cresce no hover */}
+                  {/* Fundo colorido translúcido que cresce no hover */}
                   <div
-                    className="absolute bottom-0 right-0 w-32 h-32 rounded-tl-full opacity-[0.03] group-hover:opacity-[0.08] group-hover:scale-150 transition-all duration-500 origin-bottom-right"
+                    className="absolute inset-0 opacity-[0.01] group-hover:opacity-[0.05] transition-all duration-500 scale-95 group-hover:scale-100"
+                    style={{ background: area.accent }}
+                  />
+                  <div
+                    className="absolute bottom-0 right-0 w-32 h-32 rounded-tl-full opacity-[0.03] group-hover:opacity-[0.12] group-hover:scale-150 transition-all duration-700 origin-bottom-right"
                     style={{ background: area.accent }}
                   />
                   
                   <div className="flex justify-between items-start">
                     <div
-                      className="text-sm font-black tracking-widest"
+                      className="text-sm font-black tracking-widest transition-colors duration-300 group-hover:text-amber-500"
                       style={{ fontFamily: "Lato, sans-serif", color: area.accent.includes('3b82f6') ? '#1d4ed8' : area.accent.includes('a855f7') ? '#7e22ce' : area.accent.includes('f59e0b') ? '#b45309' : area.accent.includes('10b981') ? '#047857' : '#be123c' }}
                     >
                       {area.abbr}
                     </div>
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white shadow-md transform group-hover:rotate-12 transition-transform duration-300" style={{ background: area.accent }}>
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white shadow-md transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" style={{ background: area.accent }}>
                       <area.icon className="w-5 h-5" />
                     </div>
                   </div>
 
                   <div className="relative z-10">
                     <h3
-                      className="font-bold text-lg text-gray-800 mb-1"
+                      className="font-bold text-lg text-gray-800 mb-1 group-hover:text-brand-primary transition-colors duration-300"
                       style={{ fontFamily: "Merriweather, Georgia, serif" }}
                     >
                       {area.name}
                     </h3>
-                    <p className="text-sm text-gray-500 leading-relaxed" style={{ fontFamily: "Lato, sans-serif" }}>
+                    <p className="text-sm text-gray-500 leading-relaxed group-hover:text-gray-600 transition-colors duration-300" style={{ fontFamily: "Lato, sans-serif" }}>
                       {area.desc}
                     </p>
                   </div>

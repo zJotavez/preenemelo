@@ -101,26 +101,35 @@ export const Opportunities = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
-                    className="bg-white rounded-3xl p-6 shadow-md border border-white hover:border-blue-100 hover:shadow-xl transition-all duration-300 group"
+                    transition={{ 
+                      delay: idx * 0.08, 
+                      duration: 0.5, 
+                      ease: [0.215, 0.61, 0.355, 1] 
+                    }}
+                    whileHover={{ 
+                      y: -10, 
+                      scale: 1.03,
+                      boxShadow: "0 20px 30px -10px rgba(26, 86, 196, 0.15)"
+                    }}
+                    className="bg-white rounded-3xl p-6 shadow-md border border-gray-100 hover:border-blue-300/50 transition-all duration-300 group cursor-pointer"
                   >
-                    <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">
+                    <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-brand-primary group-hover:text-white group-hover:rotate-6 transition-all duration-500 shadow-sm">
                       <item.icon className="w-6 h-6" />
                     </div>
                     <div
-                      className="text-xl font-black text-gray-900 mb-1"
+                      className="text-xl font-black text-gray-900 mb-1 group-hover:text-brand-primary transition-colors duration-300"
                       style={{ fontFamily: "Merriweather, Georgia, serif" }}
                     >
                       {item.value}
                     </div>
                     <div
-                      className="text-xs text-blue-600 uppercase tracking-widest font-bold mb-2"
+                      className="text-xs text-blue-600 uppercase tracking-widest font-bold mb-2 group-hover:text-amber-500 transition-colors duration-300"
                       style={{ fontFamily: "Lato, sans-serif" }}
                     >
                       {item.label}
                     </div>
                     <div
-                      className="text-sm text-gray-500"
+                      className="text-sm text-gray-500 group-hover:text-gray-600 transition-colors duration-300"
                       style={{ fontFamily: "Lato, sans-serif" }}
                     >
                       {item.desc}

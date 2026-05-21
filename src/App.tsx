@@ -1,4 +1,6 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "motion/react";
 import { Background } from "./components/Background";
 import { Header } from "./components/Header";
 import { Hero } from "./components/sections/Hero";
@@ -12,6 +14,47 @@ import { Gallery } from "./components/sections/Gallery";
 import { Testimonials } from "./components/sections/Testimonials";
 import { FinalCta } from "./components/sections/FinalCta";
 import { TeacherPage } from "./pages/TeacherPage";
+import { Loader } from "./components/ui/Loader";
+import { PageTransition } from "./components/ui/PageTransition";
+
+// Componente para rolar a tela até o topo ao mudar de rota
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
+// Componente para encapsular rotas com transições
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route 
+          path="/" 
+          element={
+            <PageTransition>
+              <HomePage />
+            </PageTransition>
+          } 
+        />
+        <Route 
+          path="/professor/:id" 
+          element={
+            <PageTransition>
+              <TeacherPage />
+            </PageTransition>
+          } 
+        />
+      </Routes>
+    </AnimatePresence>
+  );
+}
 
 // Página principal com todas as seções
 const HomePage = () => (
@@ -36,10 +79,9 @@ const HomePage = () => (
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/professor/:id" element={<TeacherPage />} />
-      </Routes>
+      <Loader />
+      <ScrollToTop />
+      <AnimatedRoutes />
     </BrowserRouter>
   );
 }

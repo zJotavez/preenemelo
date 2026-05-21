@@ -1,26 +1,67 @@
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { Button } from "../ui/Button";
 
 export const Hero = () => {
+  const { scrollY } = useScroll();
+  
+  // Efeito paralaxe na imagem de fundo (move 25% da velocidade do scroll)
+  const yBg = useTransform(scrollY, [0, 1000], ["0%", "25%"]);
+  
+  // Efeito paralaxe no container de textos
+  const yText = useTransform(scrollY, [0, 1000], ["0px", "80px"]);
+
+  // Elementos geométricos decorativos com velocidades de paralaxe variadas
+  const yCircle1 = useTransform(scrollY, [0, 1000], ["0px", "-150px"]);
+  const yCircle2 = useTransform(scrollY, [0, 1000], ["0px", "120px"]);
+  const yCircle3 = useTransform(scrollY, [0, 1000], ["0px", "-250px"]);
+
   return (
-    <section className="relative w-full min-h-[90vh] flex flex-col justify-center overflow-hidden">
-      {/* Imagem de Fundo e Overlay */}
-      <div className="absolute inset-0 z-0">
+    <section className="relative w-full min-h-[90vh] flex flex-col justify-center overflow-hidden bg-brand-void">
+      {/* Imagem de Fundo com efeito Paralaxe real */}
+      <motion.div 
+        style={{ y: yBg }}
+        className="absolute inset-0 z-0 scale-105"
+      >
         <img 
           src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop" 
           alt="Estudantes" 
           className="w-full h-full object-cover object-center"
         />
         {/* Overlay azul degradê escuro */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a1930] via-[#0a1930]/80 to-transparent" />
-        <div className="absolute inset-0 bg-blue-900/30 mix-blend-multiply" />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a1930] via-[#0a1930]/85 to-[#0a1930]/40" />
+        <div className="absolute inset-0 bg-blue-950/45 mix-blend-multiply" />
+      </motion.div>
+
+      {/* Elementos geométricos 3D com profundidade de rolagem (Parallax Elements) */}
+      {/* Círculo Azul Brilhante Superior Direito */}
+      <motion.div
+        style={{ y: yCircle1 }}
+        className="absolute top-24 right-10 w-96 h-96 rounded-full bg-brand-primary/20 blur-[80px] pointer-events-none z-10"
+      />
+      {/* Círculo Dourado/Âmbar Esquerdo do Centro */}
+      <motion.div
+        style={{ y: yCircle2 }}
+        className="absolute top-1/2 left-[-100px] w-80 h-80 rounded-full bg-amber-500/10 blur-[90px] pointer-events-none z-10"
+      />
+      {/* Elemento Geométrico Sutil Interativo */}
+      <motion.div
+        style={{ y: yCircle3 }}
+        className="absolute bottom-20 right-1/4 w-32 h-32 rounded-full border border-white/10 backdrop-blur-sm pointer-events-none z-10 hidden md:block"
+        animate={{ 
+          rotate: 360, 
+          scale: [1, 1.05, 1],
+        }}
+        transition={{ 
+          rotate: { duration: 25, repeat: Infinity, ease: "linear" },
+          scale: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+        }}
+      />
 
       {/* Faixa Marquee Superior - Curso 2026 */}
-      <div className="absolute top-20 left-0 w-full overflow-hidden bg-amber-500 py-2 z-20 flex whitespace-nowrap shadow-md transform -rotate-1 origin-left">
+      <div className="absolute top-24 left-0 w-full overflow-hidden bg-amber-500 py-2.5 z-20 flex whitespace-nowrap shadow-lg transform -rotate-1 origin-left">
         <motion.div
           animate={{ x: ["0%", "-50%"] }}
-          transition={{ ease: "linear", duration: 15, repeat: Infinity }}
+          transition={{ ease: "linear", duration: 18, repeat: Infinity }}
           className="flex whitespace-nowrap gap-10 items-center"
         >
           {Array(8).fill(null).map((_, i) => (
@@ -32,14 +73,15 @@ export const Hero = () => {
         </motion.div>
       </div>
 
-      <div className="w-full max-w-7xl mx-auto px-6 pt-32 pb-20 relative z-10 flex flex-col items-start text-left mt-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-3xl"
-        >
-          <h1
+      <motion.div 
+        style={{ y: yText }}
+        className="w-full max-w-7xl mx-auto px-6 pt-36 pb-20 relative z-10 flex flex-col items-start text-left mt-10"
+      >
+        <div className="max-w-3xl">
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-[1.1]"
             style={{ fontFamily: "Merriweather, Georgia, serif" }}
           >
@@ -52,12 +94,12 @@ export const Hero = () => {
                 começa agora.
               </span>
             </span>
-          </h1>
+          </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl leading-relaxed"
             style={{ fontFamily: "Lato, sans-serif", fontWeight: 300 }}
           >
@@ -65,9 +107,9 @@ export const Hero = () => {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col sm:flex-row items-center gap-6"
           >
             <Button
@@ -88,8 +130,8 @@ export const Hero = () => {
               </div>
             </div>
           </motion.div>
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
 
       {/* Degradê na base para transição suave para a próxima seção */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent z-10" />

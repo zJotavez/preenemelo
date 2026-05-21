@@ -86,31 +86,43 @@ export const Teachers = () => {
               return (
                 <motion.div
                   key={`${teacher.id}-${idx}`}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: (idx % 3) * 0.1, duration: 0.5 }}
+                  transition={{ delay: (idx % 3) * 0.1, duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }}
+                  whileHover={{ 
+                    y: -12,
+                    scale: 1.015,
+                    boxShadow: `0 25px 50px -12px ${teacher.accentColor}33`,
+                  }}
                   onClick={() => navigate(`/professor/${teacher.id}`)}
-                  className="relative flex-shrink-0 w-[85vw] sm:w-[320px] lg:w-[400px] h-[550px] rounded-3xl overflow-hidden group shadow-2xl"
+                  className="relative flex-shrink-0 w-[85vw] sm:w-[320px] lg:w-[400px] h-[550px] rounded-3xl overflow-hidden group shadow-2xl transition-all duration-300 border border-white/5 hover:border-[var(--teacher-accent)] cursor-pointer"
+                  style={{ 
+                    // @ts-ignore
+                    "--teacher-accent": teacher.accentColor 
+                  }}
                 >
-                  {/* Foto de Fundo */}
+                  {/* Foto de Fundo com zoom e rotação suave */}
                   <img
                     src={teacher.photo}
                     alt={teacher.name}
-                    className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:rotate-1"
                   />
                   
                   {/* Sobreposições escuras/coloridas baseadas na foto */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/60 to-transparent opacity-90 group-hover:opacity-80 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/60 to-transparent opacity-90 group-hover:opacity-85 transition-opacity duration-300" />
                   <div 
-                    className="absolute inset-0 opacity-40 mix-blend-color" 
+                    className="absolute inset-0 opacity-30 mix-blend-color group-hover:opacity-40 transition-opacity duration-300" 
                     style={{ backgroundColor: teacher.accentColor }}
                   />
+
+                  {/* Borda interna brilhante (Glow Ring) no Hover */}
+                  <div className="absolute inset-0 border border-white/0 group-hover:border-white/10 rounded-3xl pointer-events-none transition-all duration-300 z-20" />
 
                   {/* Detalhes Superiores */}
                   <div className="absolute top-6 left-6 right-6 flex justify-between items-start z-10">
                     <div
-                      className="px-3 py-1.5 rounded-lg backdrop-blur-md bg-white/10 border border-white/20 text-white text-xs font-bold uppercase tracking-widest shadow-lg"
+                      className="px-3 py-1.5 rounded-lg backdrop-blur-md bg-white/10 border border-white/20 text-white text-xs font-bold uppercase tracking-widest shadow-lg transition-transform duration-300 group-hover:scale-105"
                       style={{ fontFamily: "Lato, sans-serif" }}
                     >
                       {teacher.subject}
@@ -120,7 +132,7 @@ export const Teachers = () => {
                   {/* Informações do Professor */}
                   <div className="absolute inset-0 p-8 flex flex-col justify-end z-10">
                     <h3
-                      className="text-3xl font-bold text-white mb-2 leading-tight"
+                      className="text-3xl font-bold text-white mb-2 leading-tight group-hover:text-amber-300 transition-colors duration-300"
                       style={{ fontFamily: "Merriweather, Georgia, serif" }}
                     >
                       {teacher.name}
@@ -132,18 +144,18 @@ export const Teachers = () => {
                       {teacher.subjectFull}
                     </p>
                     <p
-                      className="text-gray-400 text-sm leading-relaxed mb-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
+                      className="text-gray-400 text-sm leading-relaxed mb-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-75"
                       style={{ fontFamily: "Lato, sans-serif" }}
                     >
                       {teacher.shortBio}
                     </p>
 
                     <div
-                      className="flex items-center gap-3 text-sm font-bold text-white bg-white/10 hover:bg-white/20 border border-white/20 w-fit px-5 py-2.5 rounded-full transition-colors duration-300 backdrop-blur-md"
+                      className="flex items-center gap-3 text-sm font-bold text-white bg-white/10 hover:bg-white/20 border border-white/20 w-fit px-5 py-2.5 rounded-full transition-all duration-300 backdrop-blur-md group-hover:bg-[var(--teacher-accent)] group-hover:border-transparent group-hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
                       style={{ fontFamily: "Lato, sans-serif" }}
                     >
                       <span>Perfil Completo</span>
-                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
                     </div>
                   </div>
                 </motion.div>

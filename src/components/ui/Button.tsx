@@ -26,16 +26,48 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <motion.button
         ref={ref}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
+        initial="initial"
+        whileHover="hover"
+        whileTap="tap"
+        variants={{
+          initial: { scale: 1 },
+          hover: { 
+            scale: 1.04,
+            boxShadow: "0 10px 25px -5px rgba(26, 86, 196, 0.4), 0 8px 10px -6px rgba(26, 86, 196, 0.4)",
+            transition: { type: "spring", stiffness: 400, damping: 15 }
+          },
+          tap: { 
+            scale: 0.96,
+            transition: { type: "spring", stiffness: 400, damping: 15 }
+          }
+        }}
         className={cn(
-          "inline-flex items-center justify-center rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-brand-neon focus:ring-offset-2 focus:ring-offset-brand-darker",
+          "relative inline-flex items-center justify-center rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-brand-neon focus:ring-offset-2 focus:ring-offset-brand-darker overflow-hidden cursor-pointer",
           variants[variant],
           sizes[size],
           className
         )}
         {...props}
       >
+        {/* Efeito Shimmer (Brilho dinâmico) ao passar o mouse */}
+        {variant !== "ghost" && (
+          <motion.div
+            variants={{
+              initial: { x: "-150%" },
+              hover: { 
+                x: "150%",
+                transition: { 
+                  repeat: Infinity, 
+                  repeatDelay: 1,
+                  duration: 1.2, 
+                  ease: "easeInOut" 
+                } 
+              }
+            }}
+            className="absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 pointer-events-none z-0"
+          />
+        )}
+        
         <span className="relative z-10 flex items-center gap-2">{children}</span>
       </motion.button>
     );

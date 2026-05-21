@@ -107,36 +107,41 @@ export const Benefits = () => {
             {benefits.map((item, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="relative flex-shrink-0 w-[85vw] sm:w-[350px] lg:w-[400px] h-[450px] rounded-3xl overflow-hidden group shadow-lg border-2 border-transparent hover:border-blue-400/50 transition-colors"
+                transition={{ delay: idx * 0.08, duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }}
+                whileHover={{ 
+                  y: -12, 
+                  scale: 1.02,
+                  boxShadow: "0 20px 40px -15px rgba(26, 86, 196, 0.25)"
+                }}
+                className="relative flex-shrink-0 w-[85vw] sm:w-[350px] lg:w-[400px] h-[450px] rounded-3xl overflow-hidden group shadow-md border border-gray-200/50 hover:border-blue-500/50 transition-all duration-300 cursor-pointer bg-white"
               >
-                {/* Background Image */}
+                {/* Background Image com zoom suave */}
                 <img 
                   src={item.image} 
                   alt={item.title} 
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110"
                 />
                 
                 {/* Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent opacity-90 group-hover:opacity-80 transition-opacity" />
-                <div className="absolute inset-0 bg-blue-900/20 mix-blend-overlay" />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/60 to-transparent opacity-90 group-hover:opacity-85 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay" />
 
                 {/* Content */}
                 <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                  <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-6 text-white group-hover:scale-110 group-hover:bg-blue-600 transition-all duration-300 shadow-xl">
-                    <item.icon className="w-7 h-7" />
+                  <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-6 text-white group-hover:scale-110 group-hover:bg-brand-primary group-hover:border-transparent group-hover:rotate-6 transition-all duration-500 shadow-xl">
+                    <item.icon className="w-7 h-7 transition-transform duration-300 group-hover:scale-110" />
                   </div>
                   <h3
-                    className="text-2xl font-bold text-white mb-3"
+                    className="text-2xl font-bold text-white mb-3 group-hover:text-amber-300 transition-colors duration-300"
                     style={{ fontFamily: "Merriweather, Georgia, serif" }}
                   >
                     {item.title}
                   </h3>
                   <p 
-                    className="text-white/80 leading-relaxed text-sm" 
+                    className="text-white/80 leading-relaxed text-sm group-hover:text-white transition-colors duration-300" 
                     style={{ fontFamily: "Lato, sans-serif" }}
                   >
                     {item.desc}
