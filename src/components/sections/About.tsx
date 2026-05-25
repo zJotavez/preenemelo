@@ -4,6 +4,7 @@ import { ArrowUpRight, Target, Users, BookOpen, PlayCircle } from "lucide-react"
 
 export const About = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
@@ -166,34 +167,55 @@ export const About = () => {
               </div>
             </motion.div>
 
-            {/* Placeholder de Vídeo YouTube com deslocamento de paralaxe oposto */}
+            {/* Vídeo do YouTube do Coordenador com reprodução sob demanda */}
             <motion.div 
               style={{ y: yVideoValue }}
-              className="relative h-[250px] w-full rounded-3xl overflow-hidden shadow-xl border border-gray-100 group cursor-pointer bg-gray-950 z-20"
+              className="relative h-[250px] w-full rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-gray-950 z-20"
             >
-              {/* Espaço para o iFrame no futuro */}
-              <img 
-                src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop" 
-                alt="Thumbnail do Vídeo" 
-                className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-30 transition-opacity duration-700"
-              />
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 mb-3 group-hover:scale-110 group-hover:bg-blue-600/80 group-hover:border-transparent transition-all duration-500 shadow-xl">
-                  <PlayCircle className="w-8 h-8 text-white ml-1 transition-transform duration-300 group-hover:scale-110" />
+              {isPlaying ? (
+                <iframe
+                  className="absolute inset-0 w-full h-full border-0"
+                  src="https://www.youtube.com/embed/vhiacyAUPmw?autoplay=1&rel=0&modestbranding=1"
+                  title="Conheça o Coordenador - Pré ENEM Elo"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              ) : (
+                <div 
+                  onClick={() => setIsPlaying(true)}
+                  className="absolute inset-0 w-full h-full cursor-pointer group"
+                >
+                  <img 
+                    src="https://img.youtube.com/vi/vhiacyAUPmw/maxresdefault.jpg" 
+                    alt="Capa do Vídeo do Coordenador" 
+                    className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-700"
+                    onError={(e) => {
+                      // Fallback caso maxresdefault não esteja disponível
+                      (e.target as HTMLImageElement).src = "https://img.youtube.com/vi/vhiacyAUPmw/hqdefault.jpg";
+                    }}
+                  />
+                  {/* Gradiente sutil escuro para legibilidade do texto */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-955 via-gray-950/20 to-transparent pointer-events-none" />
+                  
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 mb-3 group-hover:scale-110 group-hover:bg-blue-600/90 group-hover:border-transparent transition-all duration-500 shadow-2xl">
+                      <PlayCircle className="w-8 h-8 text-white ml-0.5 transition-transform duration-300 group-hover:scale-110" />
+                    </div>
+                    <span 
+                      className="text-white font-bold tracking-wide text-lg group-hover:text-amber-300 transition-colors duration-300"
+                      style={{ fontFamily: "Lato, sans-serif" }}
+                    >
+                      Conheça o Coordenador
+                    </span>
+                    <span 
+                      className="text-white/80 text-xs mt-1 font-medium bg-black/40 px-3 py-1 rounded-full backdrop-blur-sm border border-white/10"
+                      style={{ fontFamily: "Lato, sans-serif" }}
+                    >
+                      Clique para assistir ao vídeo
+                    </span>
+                  </div>
                 </div>
-                <span 
-                  className="text-white font-bold tracking-wide text-lg group-hover:text-amber-300 transition-colors duration-300"
-                  style={{ fontFamily: "Lato, sans-serif" }}
-                >
-                  Conheça o Coordenador
-                </span>
-                <span 
-                  className="text-white/60 text-xs mt-1 font-medium"
-                  style={{ fontFamily: "Lato, sans-serif" }}
-                >
-                  [Espaço para Vídeo do YouTube]
-                </span>
-              </div>
+              )}
             </motion.div>
 
           </div>
